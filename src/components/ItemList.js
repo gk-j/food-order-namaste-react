@@ -1,11 +1,15 @@
+import { useRecoilState } from "recoil"
+import { useAddProduct } from "../store/hooks"
 import { IMG_CDN_URL } from "../utils/constants"
-import CartContext from "../utils/CartContext"
+// import CartContext from "../utils/CartContext"
 import { useContext, useState } from "react"
+import { cartState } from "../store/atom"
 const ItemList = ({data}) =>{
-    const {addCartItem} = useContext(CartContext)
+    // const {addCartItem} = useContext(CartContext)
     const [orderingQuantity] = useState(1)
-
-    // console.log(cartList)   
+    const addCartItem = useAddProduct() 
+    const cartList = useRecoilState(cartState)
+    console.log(cartList[0])
     return(
         <div>
             {data.map((item)=>{
@@ -18,7 +22,8 @@ const ItemList = ({data}) =>{
                             </div>
                             <div className="py-2">
                                 {item.card.info.imageId !==undefined?<img className="w-32 "  src={IMG_CDN_URL+item.card.info?.imageId} alt={item.card.info.name}/>:""}
-                                <button onClick={()=>addCartItem({item:item,quantity:orderingQuantity})} className="bg-blue-500  rounded-md p-2  text-white relative bottom-6 left-8">Add +</button>   
+                                {/* <button onClick={()=>addCartItem({item:item,quantity:orderingQuantity})} className="bg-blue-500  rounded-md p-2  text-white relative bottom-6 left-8">Add +</button>    */}
+                                <button onClick={()=>addCartItem(item)} className="bg-blue-500  rounded-md p-2  text-white relative bottom-6 left-8">Add +</button>   
                             </div>   
                             
                         </div>

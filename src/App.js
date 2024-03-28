@@ -11,6 +11,7 @@ import UserContext from "./utils/UserContext";
 import Cart from "./components/Cart";
 import CartContext from "./utils/CartContext";
 import SuccessfullySent from "./components/SuccessfullySent";
+import { RecoilRoot } from "recoil";
 // import Grocery from "./components/Grocery";
 
 const Grocery =lazy(()=>import("./components/Grocery"))
@@ -70,14 +71,14 @@ const AppLayout = () => {
     setUserName(data.name)
   },[])
     return (
+      <RecoilRoot>
       <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
-        <CartContext.Provider value={{cartList,setCartList,addCartItem,removeItem,decreaseQuantity,clearCart}}>
           <div className="app">
             <Header />
             <Outlet />
           </div>
-        </CartContext.Provider>
       </UserContext.Provider>
+      </RecoilRoot>
     );
   };
 
