@@ -1,15 +1,16 @@
-// import { useContext } from "react"
-// import CartContext from "../utils/CartContext"
+
 import ItemList from "./ItemList"
 import CartItems from "./CartItems"
-// import CartSummary from "./CartSummary"
+import CartSummary from "./CartSummary"
 import { Link } from "react-router-dom"
 import { useRecoilState } from "recoil"
 import { cartState } from "../store/atom"
+import { useClearCart } from "../store/hooks"
 
 const Cart = () => {
     const cartList = useRecoilState(cartState)
-    console.log(cartList)
+    const clearCart = useClearCart()
+    console.log(cartList[0])
     return(
         <div className="mt-24 flex flex-col  items-center text-center">
             <h1 className="border shadow-md p-2 rounded-md bg-gray-950  mb-4 font-bold text-2xl text-white">Cart</h1>
@@ -39,7 +40,7 @@ const Cart = () => {
                                 
             }
             )}
-            {/* <CartSummary/> */}
+            <CartSummary/>
             </div>
             
            

@@ -1,15 +1,15 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
-import UserContext from "../utils/UserContext.js";
-import CartContext from "../utils/CartContext.js";
+import { useRecoilValue } from "recoil";
+import { cartState } from "../store/atom.js";
+
 export const Header = () => {
 
     const [btnName,setBtnName] = useState("login")
     const onlineStatus = useOnlineStatus()
-    const {loggedInUser} = useContext(UserContext)
-    const {cartList} = useContext(CartContext)
+    const cartList = useRecoilValue(cartState)
     // console.log(onlineStatus)
     return (
       <div className="flex justify-between bg-pink-100 shadow-lg mb-2  fixed top-0 w-screen z-20 ">
@@ -51,9 +51,7 @@ export const Header = () => {
               }}
               >
                 {btnName}</button>
-            <li className="mx-2">
-              {loggedInUser}
-            </li>    
+               
           </ul>
         </div>
       </div>

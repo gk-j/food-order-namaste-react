@@ -1,11 +1,11 @@
 import { useRecoilState } from "recoil"
 import { useAddProduct } from "../store/hooks"
 import { IMG_CDN_URL } from "../utils/constants"
-// import CartContext from "../utils/CartContext"
-import { useContext, useState } from "react"
+
+import { useState } from "react"
 import { cartState } from "../store/atom"
 const ItemList = ({data}) =>{
-    // const {addCartItem} = useContext(CartContext)
+
     const [orderingQuantity] = useState(1)
     const addCartItem = useAddProduct() 
     const cartList = useRecoilState(cartState)

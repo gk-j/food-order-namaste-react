@@ -7,9 +7,9 @@ import { createBrowserRouter,Outlet,RouterProvider } from "react-router-dom";
 import Contactus from "./components/Contactus";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-import UserContext from "./utils/UserContext";
+
 import Cart from "./components/Cart";
-import CartContext from "./utils/CartContext";
+
 import SuccessfullySent from "./components/SuccessfullySent";
 import { RecoilRoot } from "recoil";
 // import Grocery from "./components/Grocery";
@@ -72,12 +72,10 @@ const AppLayout = () => {
   },[])
     return (
       <RecoilRoot>
-      <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
           <div className="app">
             <Header />
             <Outlet />
           </div>
-      </UserContext.Provider>
       </RecoilRoot>
     );
   };

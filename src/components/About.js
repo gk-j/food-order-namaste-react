@@ -1,5 +1,5 @@
 // import User from "./User"
-// import UserContext from "../utils/UserContext";
+
 // import UserClass from "./UserClass"
 
 // const About = () =>{
@@ -15,7 +15,7 @@
 // export default About 
 
 import { Component } from "react";
-import UserContext from "../utils/UserContext";
+
 import UserClass from "./UserClass"
 
 class About extends Component {
@@ -27,9 +27,7 @@ class About extends Component {
         return(
             <div className="mt-24 flex flex-col items-center">
                 <h1>About Us Page</h1>
-                <UserContext.Consumer>
-                    {({loggedInUser})=>(<h1>loggedIn:{loggedInUser}</h1>)}
-                </UserContext.Consumer>
+                
                 <UserClass name={"Gokul (class)"} location="Hyderabad"/>
             </div>
         )

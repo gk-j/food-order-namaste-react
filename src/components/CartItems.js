@@ -2,8 +2,8 @@ import { useState } from "react"
 import { IMG_CDN_URL } from "../utils/constants"
 import { useRecoilState } from "recoil"
 import { cartState } from "../store/atom"
-import { useRemoveProduct } from "../store/hooks"
-// import CartContext from "../utils/CartContext"
+import { useDecreaseQuantity, useIncreaseQuantity, useRemoveProduct } from "../store/hooks"
+
 
 export default function CartItems(props){
     const {data}=props
@@ -11,7 +11,8 @@ export default function CartItems(props){
     const {card,quantity}=data
     const [q,setq]=useState(quantity)
     const removeItem = useRemoveProduct()
-    // const {addCartItem,removeItem,decreaseQuantity} = useContext(CartContext)
+    const increaseQuantity = useIncreaseQuantity()
+    const decreaseQuantity = useDecreaseQuantity()
     // console.log(cartList)
     return(
         <div>
@@ -29,11 +30,11 @@ export default function CartItems(props){
                 </div>
                     <div className="flex items-center">
                         <div>
-                            <button onClick={()=>{setq(prev=>prev+1);addCartItem({item:item,quantity:1})}} className="bg-blue-500  rounded-full px-2  text-white">+</button>  
+                            <button onClick={()=>{setq(prev=>prev+1);increaseQuantity(card)}} className="bg-blue-500  rounded-full px-2  text-white">+</button>  
                         </div>
                         <div className="mx-2">{q}</div> 
                         <div>
-                            <button onClick={()=>{setq(prev=>prev-1);decreaseQuantity({item:item})}}  className="bg-blue-500  rounded-full px-2  text-white">-</button>
+                            <button onClick={()=>{setq(prev=>prev-1);decreaseQuantity(card)}}  className="bg-blue-500  rounded-full px-2  text-white">-</button>
                         </div>
                     </div>   
                 <p className="text-xs">{card.info?.description}</p>

@@ -7,8 +7,10 @@ export const cartStatus = selector({
   get: ({ get }) => {
     const cart = get(cartState);
     const totalItems = cart.length;
-    const totalPrice = cart.reduce((total, { qty, price }) => total + (qty * price), 0);
-
+    let totalPrice = 0;
+    cart.forEach(eachCartItem => {
+      totalPrice += (eachCartItem.card.info.defaultPrice/100 || eachCartItem.card.info.price/100) * eachCartItem.quantity
+      })
     return {
       totalItems,
       totalPrice,

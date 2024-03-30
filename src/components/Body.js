@@ -1,9 +1,9 @@
 import RestaurantCard,{withPromotedLabel} from "./RestaurantCard";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Shimmer } from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "../utils/UserContext";
+
 
 const Body = () => {
     const [resData,setresData]= useState([])
@@ -16,7 +16,7 @@ const Body = () => {
             fetchData()
     },[])
 
-    const {loggedInUser,setUserName} = useContext(UserContext)
+    
 
     const fetchData = async() => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
@@ -69,7 +69,6 @@ const Body = () => {
                         type="text" 
                         placeholder="enter the name" 
                         className="p-2 border border-solid border-black"
-                        value={loggedInUser}
                         onChange={(e)=>setUserName(e.target.value)} />
                 </div>
 
